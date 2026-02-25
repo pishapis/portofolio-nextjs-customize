@@ -57,6 +57,12 @@ const categories = [
 
 const projects = [
   {
+    title: "KLIP",
+    description: "KLIP (Klate Local Intelligence Platform) is a comprehensive AI platform that provides a wide range of AI services and solutions to empower businesses and individuals in leveraging the power of artificial intelligence.",
+    image: "/assets/projects/klip-project.webm",
+    href: "https://klaxai.vercel.app/",
+  },
+  {
     title: "Montera",
     description: "A digital map service empowering the sugarcane industry with fast, data-driven decisions through spatial analytics.",
     image: "/assets/projects/akara-webm.webm",
@@ -102,7 +108,7 @@ const projects = [
     title: "My Portofolio 2",
     description: "My Portfolio version 1.0.2.",
     image: "/assets/projects/porto2-webm.webm",
-    href: "https://my-porto-pishapis-projects.vercel.app/",
+    href: "https://pishapis.vercel.app/",
   },
   {
     title: "Etera Mobile",
@@ -649,7 +655,7 @@ export default function Home() {
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
               I am a <span className="text-primary font-semibold">fullstack developer</span> with{' '}
-              <span className="text-primary font-semibold">4 years experience</span> in IT field. Good communication skills,
+              <span className="text-primary font-semibold">5+ years experience</span> in IT field. Good communication skills,
               responsibility, flexible and good teamwork ability is an asset that I will bring into the work environment.
             </p>
 
@@ -697,8 +703,8 @@ export default function Home() {
               className="grid grid-cols-2 gap-8 xl:grid-cols-4 mt-10"
             >
               {[
-                { label: 'Years Experience', value: '4+' },
-                { label: 'Projects Completed', value: '12+' },
+                { label: 'Years Experience', value: '5+' },
+                { label: 'Projects Completed', value: '13+' },
                 { label: 'Technologies', value: '20+' },
                 { label: 'Happy Clients', value: '8+' },
               ].map((stat, index) => (
