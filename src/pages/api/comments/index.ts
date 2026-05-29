@@ -1,6 +1,6 @@
 // src/pages/api/comments/index.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import mongoose, { ConnectionStates } from 'mongoose';
+import mongoose, { ConnectionStates, Types } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
 // Define proper response types
@@ -58,12 +58,12 @@ export default async function handler(
 ) {
     try {
         await connectDB();
-        
+
         const db = mongoose.connection.db;
         if (!db) {
             throw new Error('Database not connected');
         }
-        
+
         const commentsCollection = db.collection('comments');
 
         // GET - Fetch comments with pagination
@@ -87,7 +87,7 @@ export default async function handler(
 
                 // Fetch all replies for these parent comments
                 const rawReplies = await commentsCollection
-                    .find({ 
+                    .find({
                         parentId: { $in: parentIds }
                     })
                     .sort({ createdAt: 1 })
@@ -121,13 +121,13 @@ export default async function handler(
                 }));
 
                 // Get total count for pagination
-                const totalComments = await commentsCollection.countDocuments({ 
-                    parentId: { $exists: false } 
+                const totalComments = await commentsCollection.countDocuments({
+                    parentId: { $exists: false }
                 });
                 const totalPages = Math.ceil(totalComments / limitNum);
-                
-                return res.status(200).json({ 
-                    success: true, 
+
+                return res.status(200).json({
+                    success: true,
                     data: transformedComments,
                     pagination: {
                         currentPage: pageNum,
@@ -138,13 +138,13 @@ export default async function handler(
                 });
             } catch (error) {
                 console.error('GET Error:', error);
-                return res.status(400).json({ 
-                    success: false, 
-                    error: 'Failed to fetch comments' 
+                return res.status(400).json({
+                    success: false,
+                    error: 'Failed to fetch comments'
                 });
             }
         }
-        
+
         // POST - Create comment or reply
         if (req.method === 'POST') {
             try {
@@ -153,52 +153,53 @@ export default async function handler(
 
                 // Validate required fields
                 if (!name?.trim() || !message?.trim()) {
-                    return res.status(400).json({ 
-                        success: false, 
-                        error: 'Name and message are required' 
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Name and message are required'
                     });
                 }
 
                 // Validate length
                 if (name.trim().length > 100) {
-                    return res.status(400).json({ 
-                        success: false, 
-                        error: 'Name cannot exceed 100 characters' 
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Name cannot exceed 100 characters'
                     });
                 }
 
                 if (message.trim().length > 1000) {
-                    return res.status(400).json({ 
-                        success: false, 
-                        error: 'Message cannot exceed 1000 characters' 
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Message cannot exceed 1000 characters'
                     });
                 }
 
                 // If parentId is provided, validate it exists
                 if (parentId) {
                     try {
-                        const parentComment = await commentsCollection.findOne({ 
-                            _id: new ObjectId(parentId) 
+                        // MENGGUNAKAN Types.ObjectId bawaan mongoose untuk findOne
+                        const parentComment = await commentsCollection.findOne({
+                            _id: new Types.ObjectId(parentId)
                         });
 
                         if (!parentComment) {
-                            return res.status(404).json({ 
-                                success: false, 
-                                error: 'Parent comment not found' 
+                            return res.status(404).json({
+                                success: false,
+                                error: 'Parent comment not found'
                             });
                         }
 
                         // Prevent nested replies (only allow 1 level)
                         if (parentComment.parentId) {
-                            return res.status(400).json({ 
-                                success: false, 
-                                error: 'Cannot reply to a reply' 
+                            return res.status(400).json({
+                                success: false,
+                                error: 'Cannot reply to a reply'
                             });
                         }
                     } catch (error) {
-                        return res.status(400).json({ 
-                            success: false, 
-                            error: 'Invalid parent comment ID' 
+                        return res.status(400).json({
+                            success: false,
+                            error: 'Invalid parent comment ID'
                         });
                     }
                 }
@@ -225,7 +226,7 @@ export default async function handler(
                 }
 
                 const result = await commentsCollection.insertOne(newComment);
-                
+
                 const commentData: CommentData = {
                     _id: result.insertedId.toString(),
                     name: newComment.name,
@@ -234,32 +235,32 @@ export default async function handler(
                     createdAt: newComment.createdAt.toISOString(),
                     ...(parentId && { parentId })
                 };
-                
-                return res.status(201).json({ 
-                    success: true, 
+
+                return res.status(201).json({
+                    success: true,
                     data: commentData
                 });
             } catch (error) {
                 console.error('POST Error:', error);
                 const errorMessage = error instanceof Error ? error.message : 'An error occurred';
-                return res.status(400).json({ 
-                    success: false, 
-                    error: errorMessage 
+                return res.status(400).json({
+                    success: false,
+                    error: errorMessage
                 });
             }
         }
-        
+
         // Method not allowed
-        return res.status(405).json({ 
-            success: false, 
-            error: 'Method not allowed' 
+        return res.status(405).json({
+            success: false,
+            error: 'Method not allowed'
         });
-        
+
     } catch (error) {
         console.error('Connection Error:', error);
-        return res.status(500).json({ 
-            success: false, 
-            error: 'Database connection failed' 
+        return res.status(500).json({
+            success: false,
+            error: 'Database connection failed'
         });
     }
 }
