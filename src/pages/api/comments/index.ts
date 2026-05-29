@@ -42,14 +42,14 @@ interface CommentRequestBody {
     parentId?: string;
 }
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGO_MONGODB_URI = process.env.MONGO_MONGODB_URI!;
 
 // Simple connection helper
 async function connectDB() {
     if (mongoose.connection.readyState >= ConnectionStates.connected) {
         return;
     }
-    return mongoose.connect(MONGODB_URI);
+    return mongoose.connect(MONGO_MONGODB_URI);
 }
 
 export default async function handler(
@@ -272,13 +272,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import mongoose, { ConnectionStates } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGO_MONGODB_URI = process.env.MONGO_MONGODB_URI!;
 
 async function connectDB() {
     if (mongoose.connection.readyState >= ConnectionStates.connected) {
         return;
     }
-    return mongoose.connect(MONGODB_URI);
+    return mongoose.connect(MONGO_MONGODB_URI);
 }
 
 export default async function handler(

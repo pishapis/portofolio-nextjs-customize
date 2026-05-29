@@ -72,7 +72,7 @@ pnpm install
 
 Create a `.env.local` file in the root directory:
 ```env
-MONGODB_URI=mongodb+srv://your-username:<password>@your-cluster.mongodb.net/portfolio?retryWrites=true&w=majority
+MONGO_MONGODB_URI=mongodb+srv://your-username:<password>@your-cluster.mongodb.net/portfolio?retryWrites=true&w=majority
 ```
 
 **To get your MongoDB URI:**
@@ -145,7 +145,7 @@ This portfolio can be easily deployed to various platforms:
 2. Import your repository on [Vercel](https://vercel.com)
 3. Add environment variables in Vercel Dashboard:
    - Go to Project Settings → Environment Variables
-   - Add `MONGODB_URI` with your MongoDB connection string
+   - Add `MONGO_MONGODB_URI` with your MongoDB connection string
 4. Vercel will automatically detect Next.js and deploy
 
 ### Netlify
@@ -156,12 +156,12 @@ This portfolio can be easily deployed to various platforms:
    - Publish directory: `.next`
 4. Add environment variables in Netlify Dashboard:
    - Go to Site Settings → Environment Variables
-   - Add `MONGODB_URI`
+   - Add `MONGO_MONGODB_URI`
 
 ### Docker
 ```bash
 docker build -t my-portfolio .
-docker run -p 3000:3000 -e MONGODB_URI=your_mongodb_uri my-portfolio
+docker run -p 3000:3000 -e MONGO_MONGODB_URI=your_MONGO_MONGODB_URI my-portfolio
 ```
 
 For detailed deployment guides, visit:
@@ -215,7 +215,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 ## 🐛 Troubleshooting
 
 ### MongoDB Connection Issues
-- Verify your `MONGODB_URI` in `.env.local`
+- Verify your `MONGO_MONGODB_URI` in `.env.local`
 - Check if your IP address is whitelisted in MongoDB Atlas
 - Ensure database user has proper permissions
 
