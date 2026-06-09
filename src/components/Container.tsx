@@ -87,7 +87,7 @@ export default function Container(props: ContainerProps) {
   const meta = {
     title: "Pishapis | IT Fullstack Developer & WebGIS Specialist",
     description: "IT Fullstack Developer with 5+ years of experience specializing in WebGIS solutions, interactive spatial data mapping, and custom production-ready AI workflows.",
-    image: "/assets/logo.webp",
+    image: "https://pishapis.vercel.app/assets/logo-web.webp",
     type: "website",
     ...customMeta,
   };
