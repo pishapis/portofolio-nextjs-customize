@@ -40,6 +40,7 @@ const navLinks = [
   { href: "#home", text: "Home" },
   { href: "#about", text: "About" },
   { href: "#skills", text: "Skills" },
+  { href: "#certifications", text: "Credentials" },
   { href: "#projects", text: "Projects" },
   { href: "#services", text: "Services" },
   { href: "#contact", text: "Contact" },
@@ -84,8 +85,8 @@ export default function Container(props: ContainerProps) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: "Portofolio | Pishapis",
-    description: `Full-stack website developer and WebGis Specialist.`,
+    title: "Pishapis | IT Fullstack Developer & WebGIS Specialist",
+    description: "IT Fullstack Developer with 5+ years of experience specializing in WebGIS solutions, interactive spatial data mapping, and custom production-ready AI workflows.",
     image: "/assets/logo.webp",
     type: "website",
     ...customMeta,

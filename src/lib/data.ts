@@ -1,6 +1,6 @@
 // src/lib/data.ts
 
-import { Project, Skill, SocialLink } from '@/types';
+import { Project, Skill, SocialLink, Certification } from '@/types';
 
 export const projects: Project[] = [
   {
@@ -202,39 +202,80 @@ export const projects: Project[] = [
   },
 ];
 
+export const certifications: Certification[] = [
+  {
+    title: 'Automate Generative AI workflows using Amazon Bedrock Flows',
+    issuer: 'Amazon Web Services (AWS)',
+    period: '2026',
+    credentialUrl: 'https://media.licdn.com/dms/image/v2/D562DAQG3RP9LslGhCA/profile-treasury-document-images_1280/B56Z6rURS.JQAg-/1/1780990682162?e=1781740800&v=beta&t=2-gXCkNg7gSGU2Cw2dr3PiJIlfaen2HKgkc4HzxfSsQ'
+  },
+  {
+    title: 'CRUD Operations in MongoDB',
+    issuer: 'MongoDB',
+    period: '2026',
+    credentialId: 'MDBffs82l2nzx', // Ganti dengan nomor asli Anda jika ada
+    credentialUrl: 'https://learn.mongodb.com/c/Df-xLOJ0T8Kn9I5VXQ5uGg', // Opsional, ganti atau hapus jika tidak ada
+  },
+  {
+    title: 'Relational to Document Model',
+    issuer: 'MongoDB',
+    period: '2026',
+    credentialId: 'MDBbkkj75q729', // Ganti dengan nomor asli Anda jika ada
+    credentialUrl: 'https://learn.mongodb.com/c/w_4048jkT6S_DJgR29ziMw', // Opsional, ganti atau hapus jika tidak ada
+  },
+  {
+    title: 'Fundamentals of Data Transformation',
+    issuer: 'MongoDB',
+    period: '2025',
+    credentialId: 'MDBwd6hnkrpef', // Opsional, ganti atau hapus jika tidak ada
+    credentialUrl: 'https://learn.mongodb.com/c/2DLwOfQgTMm6oulpQTkIoQ', // Opsional, ganti atau hapus jika tidak ada
+  },
+  {
+    title: 'Certificate web development',
+    issuer: 'NIIT',
+    period: '2020',
+  },
+  {
+    title: 'Certificate english in diploma',
+    issuer: 'NIIT',
+    period: '2020',
+  }
+];
+
 export const skills: Skill[] = [
-  // Frontend
-  { name: 'HTML', icon: '/assets/skills/htmllogo.png', category: 'frontend' },
-  { name: 'CSS', icon: '/assets/skills/csslogo.png', category: 'frontend' },
-  { name: 'JavaScript', icon: '/assets/skills/jslogo.png', category: 'frontend' },
-  { name: 'Bootstrap', icon: '/assets/skills/bootstraplogo.png', category: 'frontend' },
-  { name: 'Tailwind', icon: '/assets/skills/tailwind.png', category: 'frontend' },
-  { name: 'React', icon: '/assets/skills/reactlogo.png', category: 'frontend' },
-  { name: 'Next.js', icon: '/assets/skills/nextlogo.png', category: 'frontend' },
-  { name: 'Alpine.js', icon: '/assets/skills/alpinejs-2.svg', category: 'frontend' },
+  { name: 'AI Agents & Autonomous Workflows', category: 'ai' },
+  { name: 'LLM Integration & Prompt Engineering', category: 'ai' },
+  { name: 'Claude Code, Anthropic & OpenAI APIs', category: 'ai' },
+  { name: 'Ollama & Local Model Deployment', category: 'ai' },
+  { name: 'Computer Vision (OpenCV & Spatial ML)', category: 'ai' },
 
-  // Backend
-  { name: 'Node.js', icon: '/assets/skills/node.png', category: 'backend' },
-  { name: 'PHP', icon: '/assets/skills/php.png', category: 'backend' },
-  { name: 'Laravel', icon: '/assets/skills/laravel.svg', category: 'backend' },
-  { name: 'Python', icon: '/assets/skills/python.png', category: 'backend' }, // ✅ PINDAH KE BACKEND
+  { name: 'PHP & Laravel Framework', category: 'backend' },
+  { name: 'Node.js & Express.js', category: 'backend' },
+  { name: 'Python (API & Analytics)', category: 'backend' },
+  { name: 'RESTful API & Microservices', category: 'backend' },
+  { name: 'SaaS Multi-Tenant Architecture', category: 'backend' },
 
-  // Database
-  { name: 'MongoDB', icon: '/assets/skills/mongo.png', category: 'database' },
-  { name: 'MySQL', icon: '/assets/skills/mysql.png', category: 'database' },
-  { name: 'Redis', icon: '/assets/skills/redis.png', category: 'database' },
+  { name: 'React.js & Next.js', category: 'frontend' },
+  { name: 'TypeScript & JavaScript', category: 'frontend' },
+  { name: 'Flutter Mobile Development', category: 'frontend' },
+  { name: 'Tailwind CSS & UI Components', category: 'frontend' },
+  { name: 'Alpine.js & Responsive Design', category: 'frontend' },
 
-  // Tools & DevOps
-  { name: 'Git', icon: '/assets/skills/gitlogo.png', category: 'tools' },
-  { name: 'GitHub', icon: '/assets/skills/githublogo.png', category: 'tools' },
-  { name: 'AWS Server', icon: '/assets/skills/aws.svg', category: 'tools' },
-  { name: 'Docker', icon: '/assets/skills/docker.png', category: 'tools' }, // ✅ TETAP DI TOOLS
-  { name: 'Mapbox', icon: '/assets/skills/mapbox.svg', category: 'tools' },
-  { name: 'Leaflet', icon: '/assets/skills/leaflet.png', category: 'tools' },
+  { name: 'WebGIS (Mapbox & Leaflet)', category: 'gis' },
+  { name: 'GeoServer Spatial Infrastructure', category: 'gis' },
+  { name: 'PostgreSQL & PostGIS Database', category: 'gis' },
+  { name: 'MySQL & MongoDB Management', category: 'gis' },
+  { name: 'Redis Caching & Optimization', category: 'gis' },
 
-  // CMS & Mobile
-  { name: 'WordPress', icon: '/assets/skills/wordpress.png', category: 'cms' }, // ✅ KATEGORI BARU: CMS
-  { name: 'Flutter', icon: '/assets/skills/icon_flutter.svg', category: 'mobile' },
+  { name: 'AWS Cloud (S3, EC2, Lambda)', category: 'tools' },
+  { name: 'Docker Containerization', category: 'tools' },
+  { name: 'Linux Server Administration (SSH)', category: 'tools' },
+  { name: 'Git & GitHub Version Control', category: 'tools' },
+
+  { name: 'Technical SEO Specialist', category: 'cms' },
+  { name: 'WordPress Custom Plugin Dev', category: 'cms' },
+  { name: 'Google Ads & Campaign ROI', category: 'cms' },
+  { name: 'Data Driven Website Analytics', category: 'cms' },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -245,7 +286,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/muhammad-hafidz-ibnu-adi-3334701a0/',
+    url: 'https://www.linkedin.com/in/pishapis/',
     icon: 'linkedin',
   },
   {
@@ -259,10 +300,3 @@ export const socialLinks: SocialLink[] = [
     icon: 'email',
   },
 ];
-
-export const aboutContent = {
-  intro: 'I am a fullstack developer with 4 years experience in IT field. Good communication skills, responsibility, flexible and good teamwork ability is an asset that I will bring into the work environment.',
-  description: 'I like new things in work matters in the office or in the field, adaptable, always enthusiastic about what I do and this will make a positive contribution to growth your company.',
-  resumeUrl: '/CV-Muhammad-Hafidz-Ibnu-Adi-2025.pdf',
-  avatar: '/assets/hapis.jpg',
-};

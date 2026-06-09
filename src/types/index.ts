@@ -14,8 +14,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  icon: string;
-  category: 'frontend' | 'backend' | 'database' | 'tools' | 'mobile' | 'cms';
+  category: 'frontend' | 'backend' | 'database' | 'tools' | 'mobile' | 'cms' | 'ai' | 'gis';
 }
 
 export interface SocialLink {
@@ -29,6 +28,15 @@ export interface Experience {
   position: string;
   duration: string;
   description: string;
+}
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  period: string;
+  credentialId?: string;
+  credentialUrl?: string;
+  image?: string;
 }
 
 export interface Comment {

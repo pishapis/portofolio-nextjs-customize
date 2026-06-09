@@ -4,7 +4,7 @@ import { useEffect, useRef, Suspense, useState } from "react";
 import styles from "@/styles/Home.module.css";
 import { Button } from "@/components/ui/button";
 import { Download } from 'lucide-react';
-import { skills } from '@/lib/data';
+import { skills, certifications } from '@/lib/data';
 import {
   ChevronRight,
   Code2,
@@ -47,18 +47,18 @@ import {
 
 const categories = [
   { name: 'All', value: 'all' },
+  { name: 'AI & Intelligence', value: 'ai' }, // Fokus Baru
   { name: 'Frontend', value: 'frontend' },
   { name: 'Backend', value: 'backend' },
-  { name: 'Database', value: 'database' },
-  { name: 'Mobile', value: 'mobile' },
-  { name: 'Tools', value: 'tools' },
-  { name: 'CMS', value: 'cms' },
+  { name: 'Data & GIS', value: 'gis' },       // Disederhanakan
+  { name: 'DevOps & Tools', value: 'tools' }, // Gabungan padat
+  { name: 'SEO & CMS', value: 'cms' },        // Penekanan SEO
 ];
 
 const projects = [
   {
     title: "KLIP",
-    description: "KLIP (Klate Local Intelligence Platform) is a comprehensive AI platform that provides a wide range of AI services and solutions to empower businesses and individuals in leveraging the power of artificial intelligence.",
+    description: "KLIP (Klaten Local Intelligence Platform) is a comprehensive AI platform that provides a wide range of AI services and solutions to empower businesses and individuals.",
     image: "/assets/projects/klip-project.webm",
     href: "https://klaxai.vercel.app/",
   },
@@ -99,14 +99,8 @@ const projects = [
     href: "https://dashnas.ditjenbun.digii.co.id/",
   },
   {
-    title: "My Portofolio",
-    description: "My Portfolio version 1.0.1.",
-    image: "/assets/projects/porto1-webm.webm",
-    href: "https://github.com/pishapis/my-porto",
-  },
-  {
-    title: "My Portofolio 2",
-    description: "My Portfolio version 1.0.2.",
+    title: "My Portfolio", // Ubah dari Portofolio 2
+    description: "My interactive developer portfolio built with Next.js, Framer Motion, and Tailwind CSS.", // Deskripsi diperjelas
     image: "/assets/projects/porto2-webm.webm",
     href: "https://pishapis.vercel.app/",
   },
@@ -160,7 +154,7 @@ const projects = [
   },
   {
     title: "MGBOX Warehouse System",
-    description: "Application Wharehouse Managament System",
+    description: "Application Warehouse Management System.",
     image: "/assets/projects/mgbox-login.webp",
     href: "https://mgboxyogya.com/",
   },
@@ -170,32 +164,26 @@ const services = [
   {
     service: "Full-Stack Development",
     description:
-      "Building modern web apps with React, Next.js, Laravel, and Node.js from end to end.",
+      "Architecting robust, production ready web and mobile ecosystems using Laravel, Next.js, React, Flutter, Python.",
     icon: Code2,
   },
   {
-    service: "Mobile Development",
+    service: "AI & LLM Integration", // Fokus Baru
     description:
-      "Creating cross-platform mobile apps with Flutter for smooth user experiences.",
-    icon: MonitorSmartphone,
+      "Deploying Machine Learning models, deep learning vision (OpenCV), and custom automation via intelligent LLM APIs.",
+    icon: Eye,
   },
   {
-    service: "Responsive Design",
+    service: "WebGIS & Spatial Systems", // Fokus Baru
     description:
-      "Crafting websites that look great and work flawlessly on any device.",
-    icon: MonitorSmartphone,
-  },
-  {
-    service: "WordPress Development",
-    description:
-      "Building custom WordPress sites with SEO optimization and tailored plugins.",
+      "Developing high performance, national scale interactive maps utilizing MapBox, Leaflet, and GeoServer ecosystems.",
     icon: Frame,
   },
   {
-    service: "Cloud & DevOps",
+    service: "SEO & Growth Optimization", // Fokus Baru
     description:
-      "Deploying scalable solutions with AWS, Docker, and modern DevOps practices.",
-    icon: Eye,
+      "Maximizing organic search visibility, system performance, and technical search engine optimization from day one.",
+    icon: MonitorSmartphone,
   },
 ];
 
@@ -575,9 +563,9 @@ export default function Home() {
               data-scroll-speed=".09"
               className="flex flex-row items-center space-x-1.5"
             >
-              <span className={styles.pill}>next.js</span>
-              <span className={styles.pill}>tailwindcss</span>
-              <span className={styles.pill}>typescript</span>
+              <span className={styles.pill}>Next.js</span>
+              <span className={styles.pill}>Laravel</span>
+              <span className={styles.pill}>AI & ML</span>
             </div>
             <div>
               <h1
@@ -598,10 +586,10 @@ export default function Home() {
                 data-scroll
                 data-scroll-enable-touch-speed
                 data-scroll-speed=".06"
-                className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
+                className="mt-2 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl text-justify"
               >
-                Fullstack Developer passionate about digital art and web development,
-                creating innovative and impactful digital products.
+                A versatile <strong>IT Fullstack Developer</strong> specializing in WebGIS, interactive spatial data, and custom AI integrations.
+                <span className="block mt-2 text-primary font-medium">Available for Full-time • Freelance • Remote contracts globally.</span>
               </p>
             </div>
             <span
@@ -637,7 +625,8 @@ export default function Home() {
             data-scroll
             data-scroll-speed="-.01"
             id={styles["canvas-container"]}
-            className="mt-12 h-full w-full xl:mt-0 p-4 mb-12"
+            className="mt-12 h-[300px] xl:h-full w-full xl:mt-0 p-4 mb-20 xl:mb-12" 
+            /* Tambahkan h-[300px] dan mb-20 agar di HP tidak terlalu mepet */
           >
             <Suspense fallback={<span>Loading...</span>}>
               <Spline scene="/assets/scene.splinecode" />
@@ -646,32 +635,36 @@ export default function Home() {
         </section>
 
         {/* About */}
-        <section id="about" data-scroll-section>
+        <section id="about" data-scroll-section className="py-12">
           <div
             data-scroll
-            data-scroll-speed=".4"
+            data-scroll-speed=".1"
             data-scroll-position="top"
-            className="my-14 flex max-w-6xl flex-col justify-start"
+            className="my-6 flex max-w-6xl flex-col justify-start"
           >
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I am a <span className="text-primary font-semibold">fullstack developer</span> with{' '}
-              <span className="text-primary font-semibold">5+ years experience</span> in IT field. Good communication skills,
-              responsibility, flexible and good teamwork ability is an asset that I will bring into the work environment.
+            <p className="text-lg text-muted-foreground leading-relaxed text-justify">
+              As an <span className="text-primary font-semibold">IT Fullstack Developer with 5+ years of experience</span>,
+              I engineer dynamic web applications and data driven platforms that drive business growth. My background spans
+              national scale monitoring and WebGIS solutions, blending complex spatial data with seamless user experiences.
             </p>
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I like new things in work matters in the office or in the field, adaptable,
-              always enthusiastic about what I do and this will make a positive contribution to growth your company.
+            <p className="text-lg text-muted-foreground leading-relaxed text-justify mt-4">
+              Driven by tech innovation, I integrate <span className="text-primary font-semibold">AI capabilities into production</span>,
+              from deploying Machine Learning models to intelligent automation via LLM APIs. Adept at both front-end and back-end,
+              I ensure robust functionality from database architecture to interactive interfaces. Whether building an MVP or optimizing systems,
+              I bring strategic thinking to every project.
             </p>
-            <div className="pt-4">
-              <h3 className="text-xl font-semibold mb-4 text-primary">What I Bring:</h3>
+
+            {/* Bagian What I Bring di bawah ini disesuaikan dengan Core Value Anda */}
+            <div className="pt-6">
+              <h3 className="text-xl font-semibold mb-4 text-primary">Core Operational Values:</h3>
               <ul className="space-y-3">
                 {[
-                  'Strong problem-solving skills',
-                  'Clean and maintainable code',
-                  'Collaborative team player',
-                  'Continuous learning mindset',
-                  'User-focused development',
+                  'Production Ready AI & Machine Learning Integrations',
+                  'Enterprise WebGIS & Spatial Analytics Scaling',
+                  'Full Cycle Engineering (Laravel, Express.js, Next.js, Flutter)',
+                  'Technical SEO Specialist & Performance Tuning',
+                  'Adaptive Remote Workspace & Global Teamwork Ethics',
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -726,44 +719,41 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="skills" data-scroll-section
-          className="py-20 md:py-32 relative overflow-hidden">
-          {/* Background Elements */}
+        {/* Skills */}
+        <section id="skills" data-scroll-section className="py-12 md:py-16 relative overflow-hidden bg-background">
           <div className="container mx-auto px-4">
-            {/* Section Title */}
-            <div
-              data-scroll
-              data-scroll-speed="0.5"
-            >
-
+            <div data-scroll data-scroll-speed="0.1">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mb-12"
+                className="mb-14 text-center xl:text-left"
               >
-                <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
-                  ✨ Skills
+                <span className="clash-grotesk text-xs font-semibold uppercase tracking-widest text-primary">
+                  Engineering Stack
                 </span>
-                <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-                  Technologies and tools
+                <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground xl:text-6xl tracking-tighter">
+                  Technologies & Competencies
                 </h2>
+                <p className="mt-3 text-muted-foreground text-sm xl:text-base max-w-xl font-light leading-relaxed">
+                  A comprehensive overview of my technical capabilities, enterprise software workflows, and deployment environments.
+                </p>
               </motion.div>
 
-              {/* Category Filter */}
+              {/* Interactive Category Filter */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="flex flex-wrap justify-center gap-3 mb-12"
+                className="flex flex-wrap justify-center xl:justify-start gap-2 mb-16"
               >
                 {categories.map((category) => (
                   <button
                     key={category.value}
                     onClick={() => setActiveCategory(category.value)}
-                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${activeCategory === category.value
-                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/50'
-                      : 'bg-secondary text-foreground hover:bg-accent'
+                    className={`px-5 py-2 text-xs rounded-lg font-medium tracking-wide uppercase border transition-all duration-300 ${activeCategory === category.value
+                      ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                      : 'bg-secondary/20 text-muted-foreground border-transparent hover:border-border hover:text-foreground'
                       }`}
                   >
                     {category.name}
@@ -771,43 +761,132 @@ export default function Home() {
                 ))}
               </motion.div>
 
-              {/* Skills Grid */}
+              {/* Bento-Grid Style Kompetensi Tanpa Ikon */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {categories.filter(cat => cat.value !== 'all').map((cat) => {
+                  // Cek apakah rumpun ini sedang aktif atau pengguna memilih 'All'
+                  const isGroupActive = activeCategory === 'all' || activeCategory === cat.value;
+                  const groupSkills = skills.filter(skill => skill.category === cat.value);
+
+                  return (
+                    <motion.div
+                      key={cat.value}
+                      animate={{
+                        opacity: isGroupActive ? 1 : 0.20,
+                        scale: isGroupActive ? 1 : 0.99
+                      }}
+                      transition={{ duration: 0.25 }}
+                      className={`p-6 border rounded-xl bg-secondary/5 backdrop-blur transition-all duration-300 ${activeCategory === cat.value
+                        ? 'border-primary shadow-sm bg-primary/[1%]'
+                        : 'border-border/60'
+                        }`}
+                    >
+                      {/* Judul Kelompok Skill - Tanpa Emoji */}
+                      <h3 className={`clash-grotesk font-semibold text-base uppercase tracking-wider mb-5 ${activeCategory === cat.value ? 'text-primary' : 'text-foreground'
+                        }`}>
+                        {cat.name}
+                      </h3>
+
+                      {/* Barisan Badge Teks Skill Modern */}
+                      <div className="flex flex-wrap gap-2">
+                        {groupSkills.map((skill) => (
+                          <span
+                            key={skill.name}
+                            className={`px-3 py-1.5 text-sm font-normal rounded-md border tracking-wide transition-all duration-200 ${activeCategory === cat.value
+                              ? 'bg-primary/5 text-primary border-primary/30 font-medium'
+                              : 'bg-background/40 text-muted-foreground border-border/40'
+                              }`}
+                          >
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Licenses & Certifications Section - Clean Corporate Style */}
+        <section id="certifications" data-scroll-section className="py-12 bg-background border-t border-border/40">
+          <div className="container mx-auto px-4">
+            <div data-scroll data-scroll-speed="0.1">
+
+              {/* Section Header */}
               <motion.div
-                key={activeCategory}
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-6xl mx-auto"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-14 text-center xl:text-left"
               >
-                {filteredSkills.map((skill) => (
+                <span className="clash-grotesk text-xs font-semibold uppercase tracking-widest text-primary">
+                  Credentials
+                </span>
+                <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground xl:text-6xl tracking-tighter">
+                  Licenses & Certifications
+                </h2>
+                <p className="mt-3 text-muted-foreground text-sm xl:text-base max-w-xl font-light leading-relaxed">
+                  Professional certifications and industry-recognized credentials verifying my technical expertise and capabilities.
+                </p>
+              </motion.div>
+
+              {/* Certifications Clean Layout Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {certifications.map((cert, index) => (
                   <motion.div
-                    key={skill.name}
-                    variants={itemVariantsSkill}
-                    whileHover={{ y: -10, scale: 1.05 }}
-                    className="group relative border border-border rounded-2xl p-6 flex flex-col items-center justify-center gap-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary"
+                    key={cert.title}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                    className="p-6 border border-border/60 rounded-xl bg-secondary/5 backdrop-blur flex flex-col justify-between hover:border-primary/40 transition-colors duration-300"
                   >
-                    {/* Skill Icon */}
-                    <div className="relative w-16 h-16 transition-transform duration-300 group-hover:scale-110">
-                      <Image
-                        src={skill.icon}
-                        alt={skill.name}
-                        fill
-                        sizes="64px"
-                        className="object-contain"
-                      />
+                    <div>
+                      {/* Periode / Tahun */}
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-primary bg-primary/5 px-2.5 py-1 rounded-md">
+                        {cert.period}
+                      </span>
+
+                      {/* Judul Sertifikat */}
+                      <h3 className="clash-grotesk font-semibold text-base text-foreground tracking-tight mt-4 leading-snug">
+                        {cert.title}
+                      </h3>
+
+                      {/* Penerbit / Institusi */}
+                      <p className="mt-1.5 text-xs text-muted-foreground font-normal">
+                        {cert.issuer}
+                      </p>
                     </div>
 
-                    {/* Skill Name */}
-                    <span className="text-sm font-semibold text-center text-foreground group-hover:text-primary transition-colors">
-                      {skill.name}
-                    </span>
+                    {/* ID Kredensial (Jika ada) */}
+                    {cert.credentialId && (
+                      <div className="mt-6 pt-4 border-t border-border/40">
+                        <span className="font-mono text-[11px] text-muted-foreground/70 block tracking-tight">
+                          {cert.credentialId}
+                        </span>
+                      </div>
+                    )}
 
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 bg-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
+                    {/* URL Kredensial (Jika ada) */}
+                    {cert.credentialUrl && (
+                      <div className="mt-4">
+                        <Link
+                          href={cert.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline"
+                        >
+                          View Credential
+                        </Link>
+                      </div>
+                    )}
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
+
             </div>
           </div>
         </section>
@@ -829,7 +908,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div data-scroll data-scroll-speed=".4" className="my-64">
+          <div data-scroll data-scroll-speed=".1" className="py-16">
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
               ✨ Projects
             </span>
@@ -990,22 +1069,20 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section id="contact" data-scroll-section className="my-64">
+        <section id="contact" data-scroll-section className="py-16">
           <div
             data-scroll
-            data-scroll-speed=".4"
+            data-scroll-speed=".1"
             data-scroll-position="top"
             className="space-y-16"
           >
             {/* Contact Info */}
             <div className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24">
               <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
-                Let&apos;s work{" "}
-                <span className="text-gradient clash-grotesk">together.</span>
+                Let&apos;s work <span className="text-gradient clash-grotesk">together.</span>
               </h2>
               <p className="mt-4 text-base tracking-tight text-muted-foreground xl:text-lg max-w-2xl">
-                I&apos;m currently available for freelance work and open to
-                discussing new projects.
+                I am currently available for <strong>Full-time positions, Freelance contracts, and Remote collaborations</strong> across international time zones.
               </p>
               <Link href="mailto:hapisadi12@gmail.com" passHref>
                 <Button className="mt-6" suppressHydrationWarning>
@@ -1237,7 +1314,7 @@ export default function Home() {
                             {expandedComments.has(comment.id) && comment.replies && comment.replies.length > 0 && (
                               <motion.div
                                 initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }} 
+                                animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
                                 className="mt-4 space-y-3 pl-4 border-l-2 border-primary/30"
